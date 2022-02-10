@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+	<context:annotation-config />	<context:component-scan		base-package="es.studium.AD_Practica_Tema_5"></context:component-scan>
+
+	<!-- Creamos un bean casa1 de la clase POJO Casa dándole los valores correspondientes, 
+	 donde el valor "habitaciones" es una lista que 
+	 referencia a los beans habitacion1 y habitacion 2
+	 que hemos creado previamente -->
+
+	<bean id="casa1" class="es.studium.AD_Practica_Tema_5.Casa">
+		<property name="nombreCasa" value="Castillo Real"></property>
+		<property name="habitaciones">
+			<list>
+				<ref bean="habitacion1"/>
+				<ref bean="habitacion2"/>
+			</list>
+		</property>
+		<property name="propietario" ref="persona3"></property>
+	</bean>
+
+	<!-- Creamos los beans habitacion1 y habitacion2 donde el atributo persona
+	referencia a los beans persona1 y persona2 que hemos creado previamente -->
+
+	<bean id="habitacion1"	class="es.studium.AD_Practica_Tema_5.Habitacion">
+		<property name="nombreHabitacion" value="Habitación nº12"></property>
+		<property name="pisoHabitacion" value="3"></property>
+		<property name="tieneVentana" value="true"></property>
+		<property name="persona" ref="persona1"></property>
+	</bean>
+	<bean id="habitacion2" class="es.studium.AD_Practica_Tema_5.Habitacion">
+		<property name="nombreHabitacion" value="Habitación nº40"></property>
+		<property name="pisoHabitacion" value="10"></property>
+		<property name="tieneVentana" value="true"></property>
+		<property name="persona" ref="persona2"></property>
+	</bean>
+	<!-- Creamos los beans persona -->
+	<bean id="persona1"	class="es.studium.AD_Practica_Tema_5.Persona">
+		<property name="nombre" value="María José"></property>
+	</bean>
+	<bean id="persona2"	class="es.studium.AD_Practica_Tema_5.Persona">
+		<property name="nombre" value="Luis"></property>
+	</bean>
+	<bean id="persona3"	class="es.studium.AD_Practica_Tema_5.Persona">
+		<property name="nombre" value="Manolo"></property>
+	</bean>
+
+</beans>
